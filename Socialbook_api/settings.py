@@ -25,7 +25,7 @@ SECRET_KEY = '(2bn!#55^9hvmxgdrw-lrbh6b3^y3+*#cl-!2+$e@k@+yi6$x8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://localhost:8000','localhost']
+ALLOWED_HOSTS = ['http://localhost:8000','localhost','127.0.0.1','http://127.0.0.1:8000']
 
 
 # Application definition
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'content',
     'rest_framework',
     'corsheaders',
-    # 'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [

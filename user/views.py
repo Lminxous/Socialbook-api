@@ -29,7 +29,7 @@ def login(request):
 
     if id_info['iss'] not in ["accounts.google.com", "https://accounts.google.com"]:
         return Response({'error': "Not a valid Google account"}, status=status.HTTP_403_FORBIDDEN) 
-         
+
     email = id_info['email']
 
     hd = getattr(id_info, 'hd', email.split('@')[-1])
@@ -71,8 +71,10 @@ def register(request):
         return Response({'error': 'Not a valid BITS Mail account. '}, status=status.HTTP_403_FORBIDDEN)
 
     if User.objects.filter(email=email).count() != 0:
-        viewlog.error("f{request.path}: user with email {email} already exists")
-        return Response({'error': 'An account already exists. Try logging in instead. '}, status=status.HTTP_403_FORBIDDEN)
+        user = User.objects.get(email=email)
+        token = get_jwt_with_user(user)
+        viewlog.info(f"{request.path}: user {user.username} logged in. ")
+        return Response({'token': token}, status=status.HTTP_200_OK)
 
     user = User(username=email.split('@')[0], email=email) 
     user.set_password(generate_random_password())

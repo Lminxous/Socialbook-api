@@ -14,7 +14,7 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=100)
     about = models.CharField(max_length=140,null=True)
     follows = models.ManyToManyField('self',symmetrical=False,related_name='following')
-
+  
 # Best-practice for serializers(include within model)
 
     def to_dict(self):

@@ -10,3 +10,55 @@ TIME: 2020-07-11 11:12:46,170
 LEVEL: ERROR
 MESSAGE: /user/register/: no id_token provided in request body. 
 
+TIME: 2020-07-11 15:02:21,965
+LEVEL: ERROR
+MESSAGE: f{request.path}: user with email {email} already exists
+
+TIME: 2020-07-11 15:02:47,056
+LEVEL: INFO
+MESSAGE: /user/login/: user f20190296 logged in. 
+
+TIME: 2020-07-11 15:14:27,025
+LEVEL: ERROR
+MESSAGE: f{request.path}: user with email {email} already exists
+
+TIME: 2020-07-11 15:18:59,712
+LEVEL: ERROR
+MESSAGE: f{request.path}: user with email {email} already exists
+
+TIME: 2020-07-11 15:21:13,296
+LEVEL: INFO
+MESSAGE: /user/register/: created user with email f20190296@pilani.bits-pilani.ac.in
+
+TIME: 2020-07-11 15:21:33,934
+LEVEL: INFO
+MESSAGE: /user/login/: user f20190296 logged in. 
+
+TIME: 2020-07-11 15:23:30,704
+LEVEL: ERROR
+MESSAGE: /user/register/: no id_token provided in request body. 
+
+TIME: 2020-07-11 15:24:03,992
+LEVEL: ERROR
+MESSAGE: /user/register/: no id_token provided in request body. 
+
+TIME: 2020-07-11 15:24:04,753
+LEVEL: ERROR
+MESSAGE: /user/register/: no id_token provided in request body. 
+
+TIME: 2020-07-11 15:24:05,005
+LEVEL: ERROR
+MESSAGE: /user/register/: no id_token provided in request body. 
+
+TIME: 2020-07-11 15:24:08,975
+LEVEL: ERROR
+MESSAGE: /user/register/: no id_token provided in request body. 
+
+TIME: 2020-07-11 16:12:28,440
+LEVEL: ERROR
+MESSAGE: f{request.path}: user with email {email} already exists
+
+TIME: 2020-07-11 16:14:22,427
+LEVEL: INFO
+MESSAGE: /user/login/: user f20190296 logged in. 
+
