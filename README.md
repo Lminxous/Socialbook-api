@@ -35,6 +35,8 @@ To access the API endpoints, you will need an Auth token. Do the following to ge
 
 7) Use this token in the Authorization header in all further requests.
 
+``` Use of Developer Browsing Tools ```
+
 ```
 var myHeaders = new Headers();
 myHeaders.append("Authorization", "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6ImYyMDE5MDI5NiIsImV4cCI6MTU5NDQ4MTE3MywiZW1haWwiOiJmMjAxOTAyOTZAcGlsYW5pLmJpdHMtcGlsYW5pLmFjLmluIn0.PtLMK5xVNTgJEUzzU0ADcoNZcKBnOk6xJ7Q7zWLzLcQ");
