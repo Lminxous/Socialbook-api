@@ -7,7 +7,7 @@ To access the API endpoints, you will need an Auth token. Do the following to ge
 
 1) Go to (Google OAuth Playground)[https://developers.google.com/oauthplayground/].
 
-2) In the first step, select Google OAuth2, select both user.email and user.profile. Login using BITS Mail when asked.
+2) In the first step, select Google OAuth2 API v2, select both user.email and user.profile. Login using BITS Mail when asked.
 
 3) You will get a bunch of JSON data on the right side, copy the id_token from there.
 
