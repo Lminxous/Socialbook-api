@@ -1,5 +1,5 @@
 # Socialbook-api
-Blog website - REST API
+A blog website made exclusively for BITS students.
 
 # Getting and using an Auth token
 
