@@ -11,7 +11,7 @@ To access the API endpoints, you will need an Auth token. Do the following to ge
 
 3) You will get a bunch of JSON data on the right side, copy the id_token from there.
 
-4) Using this id_token, send a GET request to /auth/register endpoint.
+4) Using this id_token, send a GET request to /user/register endpoint.
 
 ```
  curl --location --request POST '127.0.0.1:8000/user/register/' \
