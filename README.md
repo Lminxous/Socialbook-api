@@ -37,7 +37,7 @@ To access the API endpoints, you will need an Auth token. Do the following to ge
 
 ```
 var myHeaders = new Headers();
-myHeaders.append("Authorization", "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6ImYyMDE5MDEyMCIsImV4cCI6MTU4NTI2Mjg4NCwiZW1haWwiOiJmMjAxOTAxMjBAcGlsYW5pLmJpdHMtcGlsYW5pLmFjLmluIn0.7WdcaO6mvlNEoFAz4ds7nvOWXLKJ5crDv3aPoj0F_YQ");
+myHeaders.append("Authorization", "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6ImYyMDE5MDI5NiIsImV4cCI6MTU5NDQ4MTE3MywiZW1haWwiOiJmMjAxOTAyOTZAcGlsYW5pLmJpdHMtcGlsYW5pLmFjLmluIn0.PtLMK5xVNTgJEUzzU0ADcoNZcKBnOk6xJ7Q7zWLzLcQ");
 
 var requestOptions = {
  method: 'GET',
