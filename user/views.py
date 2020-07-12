@@ -1,10 +1,12 @@
 # General
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from .models import Profile
 # Rest Framework
-from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework import status
 # Google Login
 from google.auth.transport import requests as google_requests
 from google.oauth2 import id_token as googleIdToken
@@ -51,3 +53,26 @@ def register(request):
 
     viewlog.info(f"{request.path}: created user with email {user.email}")
     return Response({'token': token, 'username': user.username, 'email': user.email}, status=status.HTTP_201_CREATED)
+
+@api_view(['POST','GET'])
+@permission_classes([IsAuthenticated])
+def follow(request,id):
+    profile = Profile.objects.get(id=id)
+    if profile not in request.user.profile.follows.all():
+        request.user.profile.follows.add(profile)
+        viewlog.info(f"{request.path}: You started following {profile}")
+        return Response(status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST','GET'])
+@permission_classes([IsAuthenticated])
+def unfollow(request,id):
+    profile = Profile.objects.get(id=id)
+    if profile in request.user.profile.follows.all():
+        request.user.profile.follows.remove(profile)
+        viewlog.info(f"{request.path}: You unfollowed {profile}")
+        return Response(status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+  
