@@ -43,16 +43,18 @@ def post_create_view(request,*args,**kwargs):
 def post_detail_view(request,id):
 
     post = Post()
-
+    
     try:
         post = Post.objects.get(pk=id)
     except post.DoesNotExist:
         return Response("Post not found", status=status.HTTP_404_NOT_FOUND)
 
     if Comment.objects.filter(post_id=id).count():
-        comments = Comment.objects.get(post_id=id)
-
-    return Response(post.to_dict(), status=status.HTTP_200_OK)
+        comments = Comment()
+        comments = [c.to_dict() for c in Comment.objects.filter(post_id=id)]
+        return Response([post.to_dict(),comments], status=status.HTTP_200_OK)
+    else:
+        return Response([post.to_dict()], status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated,])  

@@ -110,3 +110,11 @@ TIME: 2020-07-12 06:23:04,281
 LEVEL: INFO
 MESSAGE: /user/1/follow: You started following lminxous's Profile
 
+TIME: 2020-07-12 06:28:35,278
+LEVEL: INFO
+MESSAGE: /user/1/unfollow: You unfollowed lminxous's Profile
+
+TIME: 2020-07-12 06:28:41,895
+LEVEL: INFO
+MESSAGE: /user/1/follow: You started following lminxous's Profile
+
