@@ -39,7 +39,7 @@ You will get a JSON response that is similar to this:
 }' 
 ```
   
-6) Copy the value of the token field & save it somewhere.
+6) Copy the value of the token field & save it somewhere.[<LOGIN_TOKEN>]
 
 7) Use this token in the Authorization header in all further requests.
 
@@ -49,7 +49,7 @@ You will get a JSON response that is similar to this:
 In Headers:
 
 Key = Authorization
-Value = JWT <YOUR ID_TOKEN>
+Value = JWT <LOGIN_TOKEN>
 
 ```
 
