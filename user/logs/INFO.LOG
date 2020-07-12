@@ -90,3 +90,7 @@ TIME: 2020-07-12 00:35:58,419
 LEVEL: INFO
 MESSAGE: /user/login/: user f20190296 logged in. 
 
+TIME: 2020-07-12 02:59:49,478
+LEVEL: INFO
+MESSAGE: /user/register/: user f20190296 logged in. 
+

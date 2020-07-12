@@ -2,3 +2,19 @@ TIME: 2020-07-12 02:52:37,950
 LEVEL: DEBUG
 MESSAGE: /api/post/5/comments/: All Comments [{'pk': 1, 'post': 'Noddy', 'comment': 'Why are you pedophile?', 'author': 7}]
 
+TIME: 2020-07-12 02:59:49,478
+LEVEL: INFO
+MESSAGE: /user/register/: user f20190296 logged in. 
+
+TIME: 2020-07-12 03:00:11,025
+LEVEL: DEBUG
+MESSAGE: /api/post/5/comments/: All Comments [{'pk': 1, 'post': 'Noddy', 'comment': 'Why are you pedophile?', 'author': 7}]
+
+TIME: 2020-07-12 03:00:28,921
+LEVEL: DEBUG
+MESSAGE: /api/post/5/comment/new/: New Comment {'pk': 3, 'post': 'Noddy', 'comment': 'Why are you gay?', 'author': 7}
+
+TIME: 2020-07-12 03:00:37,561
+LEVEL: DEBUG
+MESSAGE: /api/post/5/comments/: All Comments [{'pk': 1, 'post': 'Noddy', 'comment': 'Why are you pedophile?', 'author': 7}, {'pk': 3, 'post': 'Noddy', 'comment': 'Why are you gay?', 'author': 7}]
+

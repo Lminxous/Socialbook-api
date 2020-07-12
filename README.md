@@ -52,3 +52,29 @@ fetch("127.0.0.1:8000/api/get_listings", requestOptions)
  .then(result => console.log(result))
  .catch(error => console.log('error', error)); 
  ```
+# Explanation of Models
+
+Authenticated User(BITS mail)
+
+1. An authenticated user can post & update blogs. It must be given the following attributes:
+```
+author
+date_posted
+title
+content
+```
+2. An authenticated user can comment on blogs. It must be given the following attributes:
+```
+author
+post
+content
+```
+3. An authenticated user can report blogs written by other users & if a blog is reported by atleast 5 independent users, blog would be deleted. It must be given the following attributes:
+```
+author
+date_posted
+title
+content
+reported_by
+```
+4. User Model is just used for the Authentication(security reasons) , both Post & Comment models are related to Profile model.
