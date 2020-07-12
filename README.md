@@ -57,7 +57,7 @@ Value = JWT <LOGIN_TOKEN>
 
 ```
 var myHeaders = new Headers();
-myHeaders.append("Authorization", "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6ImYyMDE5MDI5NiIsImV4cCI6MTU5NDQ4MTE3MywiZW1haWwiOiJmMjAxOTAyOTZAcGlsYW5pLmJpdHMtcGlsYW5pLmFjLmluIn0.PtLMK5xVNTgJEUzzU0ADcoNZcKBnOk6xJ7Q7zWLzLcQ");
+myHeaders.append("Authorization", "JWT <LOGIN_TOKEN>");
 
 var requestOptions = {
  method: 'GET',
@@ -65,7 +65,7 @@ var requestOptions = {
  redirect: 'follow'
 };
 
-fetch("127.0.0.1:8000/api/get_listings", requestOptions)
+fetch("127.0.0.1:8000/api/get_posts", requestOptions)
  .then(response => response.text())
  .then(result => console.log(result))
  .catch(error => console.log('error', error)); 
