@@ -20,9 +20,8 @@ To access the API endpoints, you will need an Auth token. Do the following to ge
   "id_token": <YOUR ID_TOKEN>
 }' 
 ```
-
   
-5) You will get a JSON response that is similar to this:
+You will get a JSON response that is similar to this:
 ```
 {
   "token": <token>,
@@ -30,12 +29,31 @@ To access the API endpoints, you will need an Auth token. Do the following to ge
   "email": <email>
   } 
 ```   
+5) Using this id_token, send a GET request to /user/login endpoint.
+
+```
+ curl --location --request POST '127.0.0.1:8000/user/login/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "id_token": <YOUR ID_TOKEN>
+}' 
+```
   
-6) Copy the value of the token field and save it somewhere.
+6) Copy the value of the token field & save it somewhere.
 
 7) Use this token in the Authorization header in all further requests.
 
-``` Use of Developer Browsing Tools :```
+``` Using Postman :```
+
+```
+In Headers:
+
+Key = Authorization
+Value = JWT <YOUR ID_TOKEN>
+
+```
+
+``` Using Developer Browsing Tools :```
 
 ```
 var myHeaders = new Headers();
