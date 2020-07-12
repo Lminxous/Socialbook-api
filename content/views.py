@@ -66,7 +66,16 @@ def post_update_view(request,id,*args,**kwargs):
         post.content = request.data["content"]
         post.save()
 
-    elif request.user.profile != post.author:
+    viewlog.debug(f"{request.path}: Updated Post {post.to_dict()}")
+    return Response(post.to_dict(), status=status.HTTP_201_CREATED)
+
+@api_view(['PUT','GET','POST'])
+@permission_classes([IsAuthenticated,])  
+def post_report_view(request,id,*args,**kwargs):
+
+    post = Post.objects.get(id=id)
+
+    if request.user.profile != post.author:
         if request.user.profile not in post.reported_by.all():
             post.reported_by.add(request.user.profile)
             post.save()
@@ -74,11 +83,12 @@ def post_update_view(request,id,*args,**kwargs):
                 messages.warning(
                     request, f'Post "{post.title}" has been successfully deleted.'
                 )
-                post.delete()  
-
-    viewlog.debug(f"{request.path}: New Post {post.to_dict()}")
-    return Response(post.to_dict(), status=status.HTTP_201_CREATED)
-
+                post.delete() 
+                return Response(status=status.HTTP_204_NO_CONTENT) 
+            else:
+                return Response(status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)            
 
 @api_view(['POST',])  
 def post_delete_view(request,id):

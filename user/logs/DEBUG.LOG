@@ -1,0 +1,20 @@
+TIME: 2020-07-12 04:28:13,773
+LEVEL: DEBUG
+MESSAGE: /api/post/5/update/: Updated Post {'pk': 5, 'title': 'Noddy', 'content': 'What the FUCK!', 'date_posted': '2020-07-12T01:33:38.020340+00:00', 'author': 7, 'reported_by': [1]}
+
+TIME: 2020-07-12 04:28:15,904
+LEVEL: DEBUG
+MESSAGE: /api/post/5/update/: Updated Post {'pk': 5, 'title': 'Noddy', 'content': 'What the FUCK!', 'date_posted': '2020-07-12T01:33:38.020340+00:00', 'author': 7, 'reported_by': [1]}
+
+TIME: 2020-07-12 04:28:25,869
+LEVEL: DEBUG
+MESSAGE: /api/post/6/update/: Updated Post {'pk': 6, 'title': 'Why', 'content': 'are gay so gay?', 'date_posted': '2020-07-12T01:45:10.995012+00:00', 'author': 7, 'reported_by': []}
+
+TIME: 2020-07-12 04:28:59,881
+LEVEL: DEBUG
+MESSAGE: /api/posts/: All Posts [{'pk': 1, 'title': 'Rick and Morty', 'content': '', 'date_posted': '2020-07-12T00:40:55.629112+00:00', 'author': 7, 'reported_by': []}, {'pk': 3, 'title': 'Rick and Morty', 'content': '', 'date_posted': '2020-07-12T00:46:02.196022+00:00', 'author': 7, 'reported_by': [1]}, {'pk': 5, 'title': 'Noddy', 'content': 'What the FUCK!', 'date_posted': '2020-07-12T01:33:38.020340+00:00', 'author': 7, 'reported_by': [1]}, {'pk': 6, 'title': 'Why', 'content': 'are gay so gay?', 'date_posted': '2020-07-12T01:45:10.995012+00:00', 'author': 7, 'reported_by': [1]}, {'pk': 7, 'title': 'What', 'content': 'results in key error?', 'date_posted': '2020-07-12T02:10:24.662794+00:00', 'author': 7, 'reported_by': []}]
+
+TIME: 2020-07-12 04:29:00,023
+LEVEL: DEBUG
+MESSAGE: /api/posts/: All Posts [{'pk': 1, 'title': 'Rick and Morty', 'content': '', 'date_posted': '2020-07-12T00:40:55.629112+00:00', 'author': 7, 'reported_by': []}, {'pk': 3, 'title': 'Rick and Morty', 'content': '', 'date_posted': '2020-07-12T00:46:02.196022+00:00', 'author': 7, 'reported_by': [1]}, {'pk': 5, 'title': 'Noddy', 'content': 'What the FUCK!', 'date_posted': '2020-07-12T01:33:38.020340+00:00', 'author': 7, 'reported_by': [1]}, {'pk': 6, 'title': 'Why', 'content': 'are gay so gay?', 'date_posted': '2020-07-12T01:45:10.995012+00:00', 'author': 7, 'reported_by': [1]}, {'pk': 7, 'title': 'What', 'content': 'results in key error?', 'date_posted': '2020-07-12T02:10:24.662794+00:00', 'author': 7, 'reported_by': []}]
+
