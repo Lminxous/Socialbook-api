@@ -9,6 +9,7 @@ from rest_framework import status
 # Other 
 import logging
 import sys
+from datetime import datetime
 
 viewlog = logging.getLogger("viewlog")
 
@@ -25,18 +26,14 @@ def get_posts(request):
 
 # Creating,Updating & Deleting Posts
 
-@api_view(['POST',])
+@api_view(['POST','GET'])
 @permission_classes([IsAuthenticated,])  
-def post_create_view(request):
-
-    json_data = request.data
+def post_create_view(request,*args,**kwargs):
 
     post = Post()
-    post.author = request.user
-    post.title = json_data["title"]
-    post.content = json_data["content"]
-    post.date_posted = datetime.datetime.fromisoformat(json_data["date_posted"])
-    post.reported_by = datetime.datetime.fromisoformat(json_data["reported_by"])
+    post.author = request.user.profile
+    post.title = request.data["title"]
+    post.content = request.data['content']
     post.save()
 
     viewlog.debug(f"{request.path}: New Post {post.to_dict()}")
@@ -48,27 +45,36 @@ def post_detail_view(request,id):
     post = Post()
 
     try:
-        post = Post.objects.get(id=id)
-        comments = Comment.objects.get(post_id=id)
+        post = Post.objects.get(pk=id)
     except post.DoesNotExist:
         return Response("Post not found", status=status.HTTP_404_NOT_FOUND)
 
-    return Response([post.to_dict(),comments.to_dict()], status=status.HTTP_200_OK)
+    if Comment.objects.filter(post_id=id).count():
+        comments = Comment.objects.get(post_id=id)
 
-@api_view(['PUT',])
+    return Response(post.to_dict(), status=status.HTTP_200_OK)
+
+@api_view(['PUT','GET','POST'])
 @permission_classes([IsAuthenticated,])  
-def post_update_view(request,id):
+def post_update_view(request,id,*args,**kwargs):
 
-    json_data = request.data
-    post = Post.objects.get(post_id=id)
+    post = Post.objects.get(id=id)
 
-    if request.user == post.author:
-        post.author = request.user
-        post.title = json_data["title"]
-        post.content = json_data["content"]
-        post.date_posted = datetime.datetime.fromisoformat(json_data["date_posted"])
-        post.reported_by = datetime.datetime.fromisoformat(json_data["reported_by"])
+    if request.user.profile == post.author:
+        post.author = request.user.profile
+        post.title = request.data["title"]
+        post.content = request.data["content"]
         post.save()
+
+    elif request.user.profile != post.author:
+        if request.user.profile not in post.reported_by.all():
+            post.reported_by.add(request.user.profile)
+            post.save()
+            if post.reported_by.count() > 4:
+                messages.warning(
+                    request, f'Post "{post.title}" has been successfully deleted.'
+                )
+                post.delete()  
 
     viewlog.debug(f"{request.path}: New Post {post.to_dict()}")
     return Response(post.to_dict(), status=status.HTTP_201_CREATED)
@@ -81,7 +87,7 @@ def post_delete_view(request,id):
 
     try:
         post = Post.objects.get(id=id)
-        if request.user == post.author:
+        if request.user.profile == post.author:
             post.delete() 
     except post.DoesNotExist:
         return Response("Post not found", status=status.HTTP_404_NOT_FOUND)
@@ -90,30 +96,44 @@ def post_delete_view(request,id):
 
 # Creating,Updating & Deleting Comments
 
+@api_view(['GET',])
+def get_comments(request,id):
+
+    print(request.user)
+    if Comment.objects.filter(post_id=id).count() != 0:
+        comments = [c.to_dict() for c in Comment.objects.filter(post_id=id)]
+        viewlog.debug(f"{request.path}: All Comments {comments}")
+        return Response(comments, status=status.HTTP_200_OK)
+    else:    
+        return Response(comments, status=status.HTTP_404_NOT_FOUND)
+    
+
 @api_view(['POST',])
 @permission_classes([IsAuthenticated,])  
-def comment_create_view(request):
+def comment_create_view(request,id):
 
-    json_data = request.data
-    comment = Comment()
-    comment.author = request.user
-    comment.post = json_data["post"]
-    comment.content = json_data["content"]
+
+    print(request.data)
+    post = Post.objects.get(id=id)
+    comment = Comment(post=post)
+    comment.author = request.user.profile
+    comment.post_id = id
+    comment.content = request.data["comment"]
     comment.save()
     
     viewlog.debug(f"{request.path}: New Comment {comment.to_dict()}")
     return Response(comment.to_dict(), status=status.HTTP_201_CREATED)    
 
-@api_view(['PUT',])
+@api_view(['PUT','GET','POST'])
 @permission_classes([IsAuthenticated,])  
-def comment_update_view(request,id):
+def comment_update_view(request,id,comment_id):
 
-    json_data = request.data
-    comment = Comment.objects.get(comment_id=id)
-    if request.user == comment.author:
-        comment.author = request.user
-        comment.post = json_data["post"]
-        comment.content = json_data["content"]
+    post = Post.objects.get(id=id)
+    comment = Comment.objects.get(id=comment_id)
+    if request.user.profile == comment.author:
+        comment.author = request.user.profile
+        comment.post_id = id
+        comment.content = request.data["comment"]
         comment.save()
     
     viewlog.debug(f"{request.path}: Comment {comment.to_dict()} has been updated")
@@ -122,13 +142,14 @@ def comment_update_view(request,id):
 
 @permission_classes([IsAuthenticated,])  
 @api_view(['POST',])  
-def comment_delete_view(request,id):
+def comment_delete_view(request,id,comment_id):
     comment = Comment()
     try:
-        comment = Comment.objects.get(comment_id=id)
-        if request.user == comment.author:
+        post = Post.objects.get(id=id)
+        comment = Comment.objects.get(id=comment_id)
+        if request.user.profile == comment.author:
             comment.delete() 
-    except post.DoesNotExist:
+    except post.DoesNotExist and comment.DoesNotExist :
         return Response("Comment not found", status=status.HTTP_404_NOT_FOUND)
 
     return Response(status=status.HTTP_204_NO_CONTENT)    
