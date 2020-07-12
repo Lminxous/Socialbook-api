@@ -54,7 +54,7 @@ def register(request):
     viewlog.info(f"{request.path}: created user with email {user.email}")
     return Response({'token': token, 'username': user.username, 'email': user.email}, status=status.HTTP_201_CREATED)
 
-@api_view(['POST','GET'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def follow(request,id):
     profile = Profile.objects.get(id=id)
@@ -65,7 +65,7 @@ def follow(request,id):
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST','GET'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def unfollow(request,id):
     profile = Profile.objects.get(id=id)

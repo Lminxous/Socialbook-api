@@ -26,7 +26,7 @@ def get_posts(request):
 
 # Creating,Updating & Deleting Posts
 
-@api_view(['POST','GET'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated,])  
 def post_create_view(request,*args,**kwargs):
 
@@ -54,7 +54,7 @@ def post_detail_view(request,id):
 
     return Response(post.to_dict(), status=status.HTTP_200_OK)
 
-@api_view(['PUT','GET','POST'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated,])  
 def post_update_view(request,id,*args,**kwargs):
 
@@ -69,7 +69,7 @@ def post_update_view(request,id,*args,**kwargs):
     viewlog.debug(f"{request.path}: Updated Post {post.to_dict()}")
     return Response(post.to_dict(), status=status.HTTP_201_CREATED)
 
-@api_view(['PUT','GET','POST'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated,])  
 def post_report_view(request,id,*args,**kwargs):
 
@@ -122,7 +122,6 @@ def get_comments(request,id):
 @permission_classes([IsAuthenticated,])  
 def comment_create_view(request,id):
 
-
     print(request.data)
     post = Post.objects.get(id=id)
     comment = Comment(post=post)
@@ -134,7 +133,7 @@ def comment_create_view(request,id):
     viewlog.debug(f"{request.path}: New Comment {comment.to_dict()}")
     return Response(comment.to_dict(), status=status.HTTP_201_CREATED)    
 
-@api_view(['PUT','GET','POST'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated,])  
 def comment_update_view(request,id,comment_id):
 

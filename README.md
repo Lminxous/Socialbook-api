@@ -95,4 +95,6 @@ title
 content
 reported_by
 ```
-4. User Model is just used for the Authentication(security reasons) , both Post & Comment models are related to Profile model.
+4. User Model is just used for the Authentication(security reasons) , all other models are related to Profile model.
+
+5. An authenticated user can follow other users.
