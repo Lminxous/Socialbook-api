@@ -20,7 +20,7 @@ class Post(models.Model):
             'content':self.content,
             'date_posted': self.date_posted.isoformat(),
             'author' : self.author.pk,
-            'reported_by' : [r.pk for r in self.reported_by.all()]
+            'reported_by' : [r.user.pk for r in self.reported_by.all()]
         }
 
     def __str__(self):
