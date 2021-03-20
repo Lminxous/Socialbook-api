@@ -33,7 +33,7 @@ idna==2.9
 isort==4.3.21
 itypes==1.2.0
 jdcal==1.4.1
-Jinja2==2.11.2
+Jinja2==2.11.3
 lazy-object-proxy==1.4.3
 lml==0.0.9
 Markdown==3.2.2
