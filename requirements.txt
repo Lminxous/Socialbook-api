@@ -55,7 +55,7 @@ pyexcel==0.6.2
 pyexcel-io==0.5.20
 pyexcel-webio==0.1.4
 Pygments==2.6.1
-PyJWT==1.7.1
+PyJWT==2.4.0
 pyperclip==1.8.0
 python-dateutil==2.8.1
 python-http-client==3.2.7
